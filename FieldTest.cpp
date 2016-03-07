@@ -18,7 +18,18 @@ class FieldTest : public ::testing::Test
 TEST(FieldTest, placeMineInBounds)
 {
 	Field minefield;
+	bool caught = false;
 	
-	minefield.placeMine(4,5);
-	ASSERT_EQ( MINE_HIDDEN, minefield.get(4,5) );
+	minefield.placeMine(0,5);
+	//ASSERT_EQ( MINE_HIDDEN, minefield.get(4,5) );
+	try
+	{
+ 	   ASSERT_TRUE( minefield.isSafe(5,5) );
+    	} 
+	catch (int err)
+	{
+		caught = true;         
+    	}
+	ASSERT_FALSE(caught);
+ }
 }
